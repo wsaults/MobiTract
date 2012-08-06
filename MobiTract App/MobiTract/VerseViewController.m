@@ -3,7 +3,7 @@
 //  MobiTract
 //
 //  Created by William Saults on 3/7/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 UTVCA. All rights reserved.
 //
 
 #import "VerseViewController.h"
@@ -44,11 +44,10 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    self.title = @"Evangelical Scriptures";
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Verse" ofType:@"plist"];
     verseArray = [[NSArray alloc] initWithContentsOfFile:path];
-    
     
     path = [[NSBundle mainBundle] pathForResource:@"Scripture" ofType:@"plist"];
     scriptureArray = [[NSMutableArray alloc] initWithContentsOfFile:path];
@@ -60,11 +59,6 @@
     
     stepper = [[UIStepper alloc] init];
     stepper.maximumValue = (double)[verseArray count]-1;
-}
-
-- (IBAction)done:(id)sender 
-{
-    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)stepperValueChanged:(UIStepper *)sender {

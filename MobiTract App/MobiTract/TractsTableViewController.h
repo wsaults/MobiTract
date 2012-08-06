@@ -3,11 +3,10 @@
 //  MobiTract
 //
 //  Created by William Saults on 2/25/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 UTVCA. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "VerseViewController.h"
 
 @interface TractsTableViewController : UITableViewController {
     NSMutableArray *tracts;

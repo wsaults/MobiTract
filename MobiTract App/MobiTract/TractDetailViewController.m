@@ -3,7 +3,7 @@
 //  MobiTract
 //
 //  Created by William Saults on 2/25/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 UTVCA. All rights reserved.
 //
 
 #import <Twitter/Twitter.h>
@@ -225,8 +225,7 @@
 - (void)showInfoView:(id)sender 
 {
     // Load the InfoView
-    InfoViewController *ivc = [[InfoViewController alloc] 
-                                                          initWithNibName:@"InfoViewController" bundle:nil];
+    InfoViewController *ivc = [[InfoViewController alloc] initWithNibName:@"InfoViewController" bundle:nil];
     // Set the title for the InfoView
     ivc.title = @"Information";
 }

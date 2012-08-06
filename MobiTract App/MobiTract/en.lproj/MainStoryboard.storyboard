@@ -1,24 +1,74 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="ECf-rU-z9J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="ECf-rU-z9J">
     <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
-        <scene sceneID="5Tg-wl-aCt">
+        <!--Menu View Controller - MobiTract-->
+        <scene sceneID="gb3-co-W3G">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xWv-as-wit" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController definesPresentationContext="YES" id="Eiw-3J-7pv" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="hiM-cV-Yeb">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="L5V-5p-D6Q" kind="relationship" relationship="rootViewController" id="k2X-zW-EUK"/>
-                    </connections>
-                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cJi-7y-aDz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="6zR-K5-s3m" customClass="MenuViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OqR-jV-FQs">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SFb-fC-8QX">
+                                <rect key="frame" x="113" y="243" width="94" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Donate">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="iM9-uU-fC0" kind="push" identifier="ShowInfo" id="9qj-mQ-8Qx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cDy-u0-QsL">
+                                <rect key="frame" x="115" y="86" width="90" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Scripture">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="L5V-5p-D6Q" kind="push" identifier="ShowVerseView" id="arv-YF-1Kk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5Au-SS-vuy">
+                                <rect key="frame" x="115" y="170" width="90" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Tracts">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="td6-Mt-Iya" kind="push" identifier="ShowTractsTable" id="VmV-SU-ddD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="MobiTract" id="WVI-Zr-Kfd"/>
+                </viewController>
             </objects>
-            <point key="canvasLocation" x="348" y="-553"/>
+            <point key="canvasLocation" x="-20" y="121"/>
         </scene>
+        <!--Verse View Controller-->
         <scene sceneID="PzZ-xy-0Te">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xj8-Bl-CSM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -31,14 +81,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Default Text" id="fhw-w6-OBO">
-                                        <rect key="frame" x="20" y="72" width="280" height="289"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
-                                        <color key="textColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="9ph-bz-c0C">
                                         <rect key="frame" x="20" y="20" width="280" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -47,6 +89,14 @@
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Default Text" id="fhw-w6-OBO">
+                                        <rect key="frame" x="20" y="72" width="280" height="290"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                     <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" autorepeat="NO" maximumValue="36" id="BW9-vb-Bff">
                                         <rect key="frame" x="113" y="369" width="94" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -67,8 +117,9 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="773" y="-553"/>
+            <point key="canvasLocation" x="507" y="-513"/>
         </scene>
+        <!--Tracts Table View Controller - Select a tract-->
         <scene sceneID="2m6-dI-rBT">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5g-Hn-Gvf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -78,12 +129,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TractCell" id="pWh-cj-2DZ">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TractCell" textLabel="VuB-rX-k87" style="IBUITableViewCellStyleDefault" id="pWh-cj-2DZ">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VuB-rX-k87">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
@@ -96,18 +156,12 @@
                             <outlet property="delegate" destination="td6-Mt-Iya" id="8Hv-qw-Luo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="MobiTract" id="13l-hr-8uA">
-                        <barButtonItem key="rightBarButtonItem" image="152-rolodex.png" id="Q7T-EW-MYK">
-                            <connections>
-                                <action selector="showDailyVerse:" destination="td6-Mt-Iya" id="B3b-jf-A4E"/>
-                                <segue destination="Eiw-3J-7pv" kind="modal" identifier="ShowVerseView" id="HO1-oL-mYx"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Select a tract" id="13l-hr-8uA"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="337" y="121"/>
+            <point key="canvasLocation" x="507" y="121"/>
         </scene>
+        <!--Tract Detail View Controller-->
         <scene sceneID="unX-Hy-R3X">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yVV-iP-ko7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -121,22 +175,6 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="idf-R7-MgG">
-                                <rect key="frame" x="282" y="377" width="18" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showInfoView:" destination="0qc-py-hbd" eventType="touchUpInside" id="cqt-3r-5GW"/>
-                                    <segue destination="iM9-uU-fC0" kind="modal" identifier="ShowInfo" modalTransitionStyle="flipHorizontal" id="USM-Jc-eWn"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -152,18 +190,19 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="757" y="121"/>
+            <point key="canvasLocation" x="927" y="121"/>
         </scene>
+        <!--Info View Controller-->
         <scene sceneID="mCR-KQ-KHh">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1WM-zk-jJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="iM9-uU-fC0" customClass="InfoViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uIs-t6-L4C">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="evc-h3-3IV">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="About MobiTract:" lineBreakMode="tailTruncation" minimumFontSize="10" id="dLC-JG-F4l">
@@ -173,8 +212,8 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="9or-tO-uNo">
-                                        <rect key="frame" x="20" y="49" width="280" height="167"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" id="9or-tO-uNo">
+                                        <rect key="frame" x="20" y="43" width="280" height="172"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <accessibility key="accessibilityConfiguration">
@@ -187,14 +226,14 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Support MobiTract:" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="10" id="ev7-ac-KFt">
-                                        <rect key="frame" x="20" y="237" width="280" height="31"/>
+                                        <rect key="frame" x="20" y="212" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4M1-9p-B8c">
-                                        <rect key="frame" x="20" y="270" width="280" height="37"/>
+                                        <rect key="frame" x="20" y="242" width="280" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                         <state key="normal" title="Not Available">
@@ -209,7 +248,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pje-rC-rW2">
-                                        <rect key="frame" x="20" y="377" width="280" height="37"/>
+                                        <rect key="frame" x="20" y="337" width="280" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                         <state key="normal" title="Feedback">
@@ -224,7 +263,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="w6G-F3-I4z">
-                                        <rect key="frame" x="20" y="332" width="280" height="37"/>
+                                        <rect key="frame" x="20" y="297" width="280" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                         <state key="normal" title="Visit our website">
@@ -259,14 +298,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="xll-Pt-qoW"/>
                     <connections>
                         <outlet property="inappButton" destination="4M1-9p-B8c" id="t9B-sL-bNY"/>
                         <outlet property="scrollView" destination="evc-h3-3IV" id="IoY-5L-cEL"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1161" y="121"/>
+            <point key="canvasLocation" x="507" y="732"/>
         </scene>
+        <!--Navigation Controller-->
         <scene sceneID="vcS-fS-beb">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3XO-dj-gyv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -278,16 +319,13 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="td6-Mt-Iya" kind="relationship" relationship="rootViewController" id="xXn-vF-Znh"/>
+                        <segue destination="6zR-K5-s3m" kind="relationship" relationship="rootViewController" id="juF-YD-5iU"/>
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-183" y="121"/>
+            <point key="canvasLocation" x="-466" y="121"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="152-rolodex.png" width="26" height="18"/>
-    </resources>
     <classes>
         <class className="InfoViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoViewController.h"/>
@@ -300,6 +338,9 @@
                 <relationship kind="outlet" name="inappButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
+        </class>
+        <class className="MenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
         </class>
         <class className="TractDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TractDetailViewController.h"/>
@@ -315,7 +356,6 @@
         <class className="VerseViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/VerseViewController.h"/>
             <relationships>
-                <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="stepperValueChanged:" candidateClass="UIStepper"/>
                 <relationship kind="outlet" name="scriptureOutlet" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="verseOutlet" candidateClass="UILabel"/>

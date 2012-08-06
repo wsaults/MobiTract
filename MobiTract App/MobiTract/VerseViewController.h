@@ -3,7 +3,7 @@
 //  MobiTract
 //
 //  Created by William Saults on 3/7/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 UTVCA. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -22,7 +22,6 @@
 @property (strong, nonatomic) NSArray *verseArray;
 @property (strong, nonatomic) NSMutableArray *scriptureArray;
 @property (strong, nonatomic) UIStepper *stepper;
-- (IBAction)done:(id)sender;
 - (IBAction)stepperValueChanged:(UIStepper *)sender;
 
 @end

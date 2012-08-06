@@ -3,12 +3,11 @@
 //  MobiTract
 //
 //  Created by William Saults on 2/25/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 UTVCA. All rights reserved.
 //
 
 #import "TractsTableViewController.h"
 #import "TractDetailViewController.h"
-
 
 @implementation TractsTableViewController
 
@@ -137,7 +136,6 @@
     cell.textLabel.text = cellValue;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
-
 }
 
 /*
@@ -192,17 +190,8 @@
         
         tdvc.title = cellValue;
 
-        tdvc.selectedTract = cellValue;
-        
-    } else if ([segue.identifier isEqualToString:@"ShowVerseView"]) {
-        UINavigationController *navController = (UINavigationController *) [segue destinationViewController];
-        
-        VerseViewController *vvc = (VerseViewController *)[navController topViewController];
-        
-        vvc.title = @"Evangelical Scriptures";
-    } else {
-        
-    }
+        tdvc.selectedTract = cellValue;  
+    } 
 }
 
 //#pragma mark - Table view delegate
