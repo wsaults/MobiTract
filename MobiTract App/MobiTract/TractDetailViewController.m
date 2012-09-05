@@ -43,15 +43,38 @@
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:_selectedTract ofType:@"pdf"];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    webView.scalesPageToFit = YES;
-    [webView loadRequest:request];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@", _selectedTract];
+    fileName = [fileName stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+    fileName = [fileName stringByReplacingOccurrencesOfString:@"?" withString:@""];
+//    NSLog(@"TractDetailViewController fileName: %@", fileName);
+    
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@%@", documentsDirectory,fileName,@".pdf"];
+//    NSLog(@"TractDetailViewController filePath: %@", filePath);
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSURL *url = [NSURL fileURLWithPath:filePath];
+        
+        NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+        
+        [webView setUserInteractionEnabled:YES];
+        [webView setDelegate:self];
+        [webView scalesPageToFit];
+        [webView loadRequest:requestObj];
+    } else {
+        NSLog(@"The file does not exist - TDVC viewDidLoad");
+    }
+    
+//    NSString *path = [[NSBundle mainBundle] pathForResource:_selectedTract ofType:@"pdf"];
+//    NSURL *url = [NSURL fileURLWithPath:path];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    webView.scalesPageToFit = YES;
+//    [webView loadRequest:request];
 }
 
 

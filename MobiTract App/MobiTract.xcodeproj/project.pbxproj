@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BE0184C714FD89F3004A0BC8 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE0184C614FD89F3004A0BC8 /* Icon@2x.png */; };
 		BE0184C914FD89F6004A0BC8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BE0184C814FD89F6004A0BC8 /* Icon.png */; };
-		BE43B998150BF9FE00BDD412 /* What Really Counts? FR.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BE43B997150BF9FE00BDD412 /* What Really Counts? FR.pdf */; };
+		BE6A25AA15EC5FAF00542B39 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE6A25A915EC5FAF00542B39 /* CoreData.framework */; };
 		BE78388F14F9531600B4460D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE78388E14F9531600B4460D /* UIKit.framework */; };
 		BE78389114F9531600B4460D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE78389014F9531600B4460D /* Foundation.framework */; };
 		BE78389314F9531600B4460D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE78389214F9531600B4460D /* CoreGraphics.framework */; };
@@ -37,16 +37,6 @@
 		BE7838DE14F95BA100B4460D /* ToolbarBG.png in Resources */ = {isa = PBXBuildFile; fileRef = BE7838D414F95BA100B4460D /* ToolbarBG.png */; };
 		BE7838EB14F960A100B4460D /* NavigationLandscapeBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BE7838E914F960A100B4460D /* NavigationLandscapeBackground.png */; };
 		BE7838EC14F960A100B4460D /* NavigationPortraitBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BE7838EA14F960A100B4460D /* NavigationPortraitBackground.png */; };
-		BE7838FB14F9696400B4460D /* El Evangelio 2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BE7838F014F9696400B4460D /* El Evangelio 2.pdf */; };
-		BE7838FC14F9696400B4460D /* What Really Counts?.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BE7838F114F9696400B4460D /* What Really Counts?.pdf */; };
-		BE7838FE14F9696400B4460D /* The Gospel 2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BE7838F314F9696400B4460D /* The Gospel 2.pdf */; };
-		BE7838FF14F9696400B4460D /* The Toughest Questions.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BE7838F414F9696400B4460D /* The Toughest Questions.pdf */; };
-		BE78390014F9696400B4460D /* Salvation.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BE7838F514F9696400B4460D /* Salvation.pdf */; };
-		BE78390114F9696400B4460D /* How To Enjoy Heaven.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BE7838F614F9696400B4460D /* How To Enjoy Heaven.pdf */; };
-		BE78390214F9696400B4460D /* El Evangelio.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BE7838F714F9696400B4460D /* El Evangelio.pdf */; };
-		BE78390314F9696400B4460D /* The Gospel.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BE7838F814F9696400B4460D /* The Gospel.pdf */; };
-		BE78390414F9696400B4460D /* I'm Saved Now What.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BE7838F914F9696400B4460D /* I'm Saved Now What.pdf */; };
-		BE78390514F9696400B4460D /* I'm Growing Now What.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BE7838FA14F9696400B4460D /* I'm Growing Now What.pdf */; };
 		BE82B90214F9975D0056E0D1 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = BE82B8E514F9975D0056E0D1 /* Facebook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BE82B90314F9975D0056E0D1 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE82B8E814F9975D0056E0D1 /* FBDialog.bundle */; };
 		BE82B90414F9975D0056E0D1 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = BE82B8EA14F9975D0056E0D1 /* FBDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -68,19 +58,12 @@
 		BEC8B14614F9A7B70057D39B /* Connectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC8B14514F9A7B70057D39B /* Connectivity.m */; };
 		BEC8B14D14F9B1E40057D39B /* InAppPurchaseObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC8B14C14F9B1E40057D39B /* InAppPurchaseObserver.m */; };
 		BEC9DD3914F98693009FF1FD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC9DD3814F98693009FF1FD /* Reachability.m */; };
-		BECDDE30150BF826003C5314 /* Four Things SP.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BECDDE2F150BF826003C5314 /* Four Things SP.pdf */; };
-		BECDDE32150BF831003C5314 /* Four Things FR.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BECDDE31150BF831003C5314 /* Four Things FR.pdf */; };
-		BECDDE34150BF862003C5314 /* Four Things.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BECDDE33150BF862003C5314 /* Four Things.pdf */; };
-		BECDDE36150BF8E4003C5314 /* Nominal Christian.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BECDDE35150BF8E4003C5314 /* Nominal Christian.pdf */; };
-		BECDDE3A150BF934003C5314 /* The truth about Mary SP.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BECDDE39150BF934003C5314 /* The truth about Mary SP.pdf */; };
-		BEDB0F8214FD23D000F092C7 /* How to use tracts.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BEDB0F8114FD23D000F092C7 /* How to use tracts.pdf */; };
-		BEDB0F8514FD274600F092C7 /* The truth about Mary.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BEDB0F8414FD274600F092C7 /* The truth about Mary.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BE0184C614FD89F3004A0BC8 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		BE0184C814FD89F6004A0BC8 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
-		BE43B997150BF9FE00BDD412 /* What Really Counts? FR.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "What Really Counts? FR.pdf"; sourceTree = "<group>"; };
+		BE6A25A915EC5FAF00542B39 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BE78388A14F9531600B4460D /* MobiTract.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobiTract.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE78388E14F9531600B4460D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BE78389014F9531600B4460D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -115,16 +98,6 @@
 		BE7838D414F95BA100B4460D /* ToolbarBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToolbarBG.png; sourceTree = "<group>"; };
 		BE7838E914F960A100B4460D /* NavigationLandscapeBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationLandscapeBackground.png; sourceTree = "<group>"; };
 		BE7838EA14F960A100B4460D /* NavigationPortraitBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationPortraitBackground.png; sourceTree = "<group>"; };
-		BE7838F014F9696400B4460D /* El Evangelio 2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "El Evangelio 2.pdf"; sourceTree = "<group>"; };
-		BE7838F114F9696400B4460D /* What Really Counts?.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "What Really Counts?.pdf"; sourceTree = "<group>"; };
-		BE7838F314F9696400B4460D /* The Gospel 2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "The Gospel 2.pdf"; sourceTree = "<group>"; };
-		BE7838F414F9696400B4460D /* The Toughest Questions.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "The Toughest Questions.pdf"; sourceTree = "<group>"; };
-		BE7838F514F9696400B4460D /* Salvation.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Salvation.pdf; sourceTree = "<group>"; };
-		BE7838F614F9696400B4460D /* How To Enjoy Heaven.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "How To Enjoy Heaven.pdf"; sourceTree = "<group>"; };
-		BE7838F714F9696400B4460D /* El Evangelio.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "El Evangelio.pdf"; sourceTree = "<group>"; };
-		BE7838F814F9696400B4460D /* The Gospel.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "The Gospel.pdf"; sourceTree = "<group>"; };
-		BE7838F914F9696400B4460D /* I'm Saved Now What.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "I'm Saved Now What.pdf"; sourceTree = "<group>"; };
-		BE7838FA14F9696400B4460D /* I'm Growing Now What.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "I'm Growing Now What.pdf"; sourceTree = "<group>"; };
 		BE82B8E414F9975D0056E0D1 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		BE82B8E514F9975D0056E0D1 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
 		BE82B8E714F9975D0056E0D1 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConnect.h; sourceTree = "<group>"; };
@@ -164,13 +137,6 @@
 		BEC8B14C14F9B1E40057D39B /* InAppPurchaseObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseObserver.m; sourceTree = "<group>"; };
 		BEC9DD3714F98693009FF1FD /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		BEC9DD3814F98693009FF1FD /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		BECDDE2F150BF826003C5314 /* Four Things SP.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Four Things SP.pdf"; sourceTree = "<group>"; };
-		BECDDE31150BF831003C5314 /* Four Things FR.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Four Things FR.pdf"; sourceTree = "<group>"; };
-		BECDDE33150BF862003C5314 /* Four Things.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Four Things.pdf"; sourceTree = "<group>"; };
-		BECDDE35150BF8E4003C5314 /* Nominal Christian.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Nominal Christian.pdf"; sourceTree = "<group>"; };
-		BECDDE39150BF934003C5314 /* The truth about Mary SP.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "The truth about Mary SP.pdf"; sourceTree = "<group>"; };
-		BEDB0F8114FD23D000F092C7 /* How to use tracts.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "How to use tracts.pdf"; sourceTree = "<group>"; };
-		BEDB0F8414FD274600F092C7 /* The truth about Mary.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "The truth about Mary.pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE6A25AA15EC5FAF00542B39 /* CoreData.framework in Frameworks */,
 				BE7838C514F95B4600B4460D /* StoreKit.framework in Frameworks */,
 				BEC8B14214F9A4150057D39B /* Twitter.framework in Frameworks */,
 				BE7838CB14F95B6200B4460D /* SystemConfiguration.framework in Frameworks */,
@@ -214,6 +181,7 @@
 		BE78388D14F9531600B4460D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE6A25A915EC5FAF00542B39 /* CoreData.framework */,
 				BEC8B14114F9A4150057D39B /* Twitter.framework */,
 				BE7838CA14F95B6100B4460D /* SystemConfiguration.framework */,
 				BE7838C814F95B5800B4460D /* Security.framework */,
@@ -231,7 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				BE82B8E014F9975D0056E0D1 /* facebook */,
-				BE7838EF14F9695500B4460D /* Tracts */,
 				BE78389514F9531600B4460D /* Supporting Files */,
 				BE7838CC14F95B8E00B4460D /* Resources */,
 				BE78389D14F9531600B4460D /* AppDelegate.h */,
@@ -290,31 +257,6 @@
 				BE7838D414F95BA100B4460D /* ToolbarBG.png */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		BE7838EF14F9695500B4460D /* Tracts */ = {
-			isa = PBXGroup;
-			children = (
-				BE43B997150BF9FE00BDD412 /* What Really Counts? FR.pdf */,
-				BECDDE39150BF934003C5314 /* The truth about Mary SP.pdf */,
-				BECDDE35150BF8E4003C5314 /* Nominal Christian.pdf */,
-				BECDDE33150BF862003C5314 /* Four Things.pdf */,
-				BECDDE2F150BF826003C5314 /* Four Things SP.pdf */,
-				BECDDE31150BF831003C5314 /* Four Things FR.pdf */,
-				BEDB0F8414FD274600F092C7 /* The truth about Mary.pdf */,
-				BEDB0F8114FD23D000F092C7 /* How to use tracts.pdf */,
-				BE7838F014F9696400B4460D /* El Evangelio 2.pdf */,
-				BE7838F114F9696400B4460D /* What Really Counts?.pdf */,
-				BE7838F314F9696400B4460D /* The Gospel 2.pdf */,
-				BE7838F414F9696400B4460D /* The Toughest Questions.pdf */,
-				BE7838F514F9696400B4460D /* Salvation.pdf */,
-				BE7838F614F9696400B4460D /* How To Enjoy Heaven.pdf */,
-				BE7838F714F9696400B4460D /* El Evangelio.pdf */,
-				BE7838F814F9696400B4460D /* The Gospel.pdf */,
-				BE7838F914F9696400B4460D /* I'm Saved Now What.pdf */,
-				BE7838FA14F9696400B4460D /* I'm Growing Now What.pdf */,
-			);
-			name = Tracts;
 			sourceTree = "<group>";
 		};
 		BE82B8E014F9975D0056E0D1 /* facebook */ = {
@@ -391,7 +333,7 @@
 		BE78388114F9531500B4460D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = BE78388414F9531500B4460D /* Build configuration list for PBXProject "MobiTract" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -429,29 +371,11 @@
 				BE7838DE14F95BA100B4460D /* ToolbarBG.png in Resources */,
 				BE7838EB14F960A100B4460D /* NavigationLandscapeBackground.png in Resources */,
 				BE7838EC14F960A100B4460D /* NavigationPortraitBackground.png in Resources */,
-				BE7838FB14F9696400B4460D /* El Evangelio 2.pdf in Resources */,
-				BE7838FC14F9696400B4460D /* What Really Counts?.pdf in Resources */,
-				BE7838FE14F9696400B4460D /* The Gospel 2.pdf in Resources */,
-				BE7838FF14F9696400B4460D /* The Toughest Questions.pdf in Resources */,
-				BE78390014F9696400B4460D /* Salvation.pdf in Resources */,
-				BE78390114F9696400B4460D /* How To Enjoy Heaven.pdf in Resources */,
-				BE78390214F9696400B4460D /* El Evangelio.pdf in Resources */,
-				BE78390314F9696400B4460D /* The Gospel.pdf in Resources */,
-				BE78390414F9696400B4460D /* I'm Saved Now What.pdf in Resources */,
-				BE78390514F9696400B4460D /* I'm Growing Now What.pdf in Resources */,
 				BE82B90314F9975D0056E0D1 /* FBDialog.bundle in Resources */,
-				BEDB0F8214FD23D000F092C7 /* How to use tracts.pdf in Resources */,
-				BEDB0F8514FD274600F092C7 /* The truth about Mary.pdf in Resources */,
 				BE0184C714FD89F3004A0BC8 /* Icon@2x.png in Resources */,
 				BE0184C914FD89F6004A0BC8 /* Icon.png in Resources */,
 				BEBC41CF15087178006A4F54 /* Verse.plist in Resources */,
 				BEBC41D115087180006A4F54 /* Scripture.plist in Resources */,
-				BECDDE30150BF826003C5314 /* Four Things SP.pdf in Resources */,
-				BECDDE32150BF831003C5314 /* Four Things FR.pdf in Resources */,
-				BECDDE34150BF862003C5314 /* Four Things.pdf in Resources */,
-				BECDDE36150BF8E4003C5314 /* Nominal Christian.pdf in Resources */,
-				BECDDE3A150BF934003C5314 /* The truth about Mary SP.pdf in Resources */,
-				BE43B998150BF9FE00BDD412 /* What Really Counts? FR.pdf in Resources */,
 				BEA77B8A15CF676E002258DF /* iPadStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

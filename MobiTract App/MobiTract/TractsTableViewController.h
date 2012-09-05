@@ -9,13 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface TractsTableViewController : UITableViewController {
-    NSMutableArray *tracts;
-    NSMutableArray *devotionals;
-    NSMutableArray *listOfTracts;
+    
 }
 
 @property (strong, nonatomic) NSMutableArray *tracts;
 @property (strong, nonatomic) NSMutableArray *devotionals;
 @property (strong, nonatomic) NSMutableArray *listOfTracts;
+
+@property (strong, nonatomic) NSMutableArray *tractSubtitles;
+@property (strong, nonatomic) NSMutableArray *devotionalSubtitles;
+@property (strong, nonatomic) NSMutableArray *listOfSubtitles;
+
+@property (strong, nonatomic) NSMutableArray *allDocs;
+
+-(void)downloadPDF:(UIControl *)sender;
 
 @end

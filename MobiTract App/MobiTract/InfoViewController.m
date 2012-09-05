@@ -13,9 +13,10 @@
 #define PRODUCT_ID @"com.utvca.mobitract.gift"
 
 @synthesize inappObserver, inappButton, donateText, prodRequest = _prodRequest;
+dispatch_queue_t prodRequestQueue;
+dispatch_queue_t purchaseQueue;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -23,8 +24,7 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
@@ -42,8 +42,7 @@
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     inappObserver = [[InAppPurchaseObserver alloc] init];
     
     if ([SKPaymentQueue canMakePayments]) {
@@ -54,7 +53,12 @@
         // fetched from either a remote server or stored locally within your app.
         _prodRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:PRODUCT_ID]];
         _prodRequest.delegate = self;
-        [_prodRequest start];
+        
+        prodRequestQueue = dispatch_queue_create("com.test.productRequest", NULL);
+        dispatch_async(prodRequestQueue, ^{
+            [_prodRequest start];
+        });
+        
     } else {
         // Notify user that In-App Purchase is disabled via button text. 
         [inappButton setTitle:@"In-App Purchase is Disabled" forState:UIControlStateNormal]; 
@@ -65,8 +69,7 @@
 }
 
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     scrollView = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -83,14 +86,17 @@
     //NSLog(@"Donation button pressed");
     Connectivity *connection = [[Connectivity alloc] init];
     if ([connection isReachable]) {
-        // Replace "Your IAP Product ID" with your actual In-App Purchase Product ID.
-        SKMutablePayment *paymentRequest = [[SKMutablePayment alloc] init];
-        paymentRequest.productIdentifier = PRODUCT_ID;
-        // Assign an Observer class to the SKPaymentTransactionObserver,
-        // so that it can monitor the transaction status.
-        [[SKPaymentQueue defaultQueue] addTransactionObserver:inappObserver];
-        // Request a purchase of the selected item.
-        [[SKPaymentQueue defaultQueue] addPayment:paymentRequest];
+        purchaseQueue = dispatch_queue_create("com.test.purchaseRequest", NULL);
+        dispatch_async(purchaseQueue, ^{
+            // Replace "Your IAP Product ID" with your actual In-App Purchase Product ID.
+            SKMutablePayment *paymentRequest = [[SKMutablePayment alloc] init];
+            paymentRequest.productIdentifier = PRODUCT_ID;
+            // Assign an Observer class to the SKPaymentTransactionObserver,
+            // so that it can monitor the transaction status.
+            [[SKPaymentQueue defaultQueue] addTransactionObserver:inappObserver];
+            // Request a purchase of the selected item.
+            [[SKPaymentQueue defaultQueue] addPayment:paymentRequest];
+        });
     } else {
         [connection displayAlert];
     }
@@ -99,6 +105,7 @@
 
 // StoreKit returns a response from an SKProductsRequest. 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
+    
     // Populate the inappBuy button with the received product info. 
     SKProduct *validProduct = nil;
     int count = [response.products count];
@@ -113,6 +120,7 @@
         return;
     }
     
+        
     //NSString *buttonText = [[NSString alloc] initWithFormat:@"%@ - Buy %@", validProduct.localizedTitle, validProduct.price];
     NSString *buttonText = [[NSString alloc] initWithFormat:@"%@ - %@",validProduct.localizedTitle, validProduct.price];
     [inappButton setTitle:buttonText forState:UIControlStateNormal]; 
