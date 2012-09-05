@@ -204,6 +204,26 @@ dispatch_queue_t pdfDownloadQueue;
 -(void)downloadPDF:(UIControl *)sender {
     pdfDownloadQueue = dispatch_queue_create("com.test.downloadPDF", NULL);
     
+    // Cell activity indicator
+    NSArray *visible = [self.tableView indexPathsForVisibleRows];
+    NSIndexPath *path = (NSIndexPath*)[visible objectAtIndex:sender.tag];
+    
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:path];
+    
+    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    cell.accessoryView = nil;
+    cell.accessoryView = activityView;
+    [activityView startAnimating];
+    
+    for(UIView *subview in [cell subviews]) {
+        if([subview isKindOfClass:[UIButton class]]) {
+            [subview removeFromSuperview];
+            NSLog(@"Remove button - line 221");
+        } else {
+            // Do nothing - not a UIButton or subclass instance
+        }
+    }
+    
     dispatch_async(pdfDownloadQueue, ^{
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         
@@ -225,6 +245,9 @@ dispatch_queue_t pdfDownloadQueue;
         [self.tableView reloadData];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     });
+    
+//    [activityView stopAnimating];
+//    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 }
 
 #pragma mark - Table view delegate
