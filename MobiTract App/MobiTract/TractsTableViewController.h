@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Reachability;
 
 @interface TractsTableViewController : UITableViewController {
     
+    Reachability* internetReachable;
+    Reachability* hostReachable;
+    BOOL internetActive;
+    BOOL hostActive;
+    int netStatus;
 }
 
 @property (strong, nonatomic) NSMutableArray *tracts;
@@ -21,7 +27,11 @@
 @property (strong, nonatomic) NSMutableArray *listOfSubtitles;
 
 @property (strong, nonatomic) NSMutableArray *allDocs;
+@property UIBackgroundTaskIdentifier backgroundUpdateTask;
 
--(void)downloadPDF:(UIControl *)sender;
+- (void)downloadPdfAtIndexPath:(NSIndexPath *)indexPath;
+- (void)beingBackgroundUpdateTask:(NSIndexPath *)indexPath;
+- (void)endBackgroundUpdateTask:(NSIndexPath *)indexPath;
+- (void)checkNetworkStatus:(NSNotification *)notice;
 
 @end

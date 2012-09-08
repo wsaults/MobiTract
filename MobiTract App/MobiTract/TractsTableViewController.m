@@ -8,14 +8,13 @@
 
 #import "TractsTableViewController.h"
 #import "TractDetailViewController.h"
+#import "Reachability.h"
 
 @implementation TractsTableViewController
 
-@synthesize tracts, devotionals, listOfTracts, tractSubtitles, devotionalSubtitles, listOfSubtitles ,allDocs;
-dispatch_queue_t pdfDownloadQueue;
+@synthesize tracts, devotionals, listOfTracts, tractSubtitles, devotionalSubtitles, listOfSubtitles ,allDocs, backgroundUpdateTask;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style{
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -23,8 +22,7 @@ dispatch_queue_t pdfDownloadQueue;
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
@@ -33,13 +31,12 @@ dispatch_queue_t pdfDownloadQueue;
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
@@ -56,7 +53,7 @@ dispatch_queue_t pdfDownloadQueue;
     self.devotionals = devotionalArray;
     self.allDocs = [[NSMutableArray alloc] initWithArray:tractArray];
     [allDocs addObjectsFromArray:devotionalArray];
-//    NSLog(@"alldocs: %@", allDocs);
+    //    NSLog(@"alldocs: %@", allDocs);
     
     NSDictionary *tractsDict = [NSDictionary dictionaryWithObject:tractArray forKey:@"Content"];
     NSDictionary *devotionalDict = [NSDictionary dictionaryWithObject:devotionalArray forKey:@"Content"];
@@ -83,37 +80,44 @@ dispatch_queue_t pdfDownloadQueue;
     [listOfSubtitles addObject:devotionalSubtitleDict];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload{
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    // check for internet connection
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+    
+    internetReachable = [Reachability reachabilityForInternetConnection];
+    [internetReachable startNotifier];
+    
+    // check if a pathway to a random host exists
+    hostReachable = [Reachability reachabilityWithHostname:@"www.mobitract.utvca.com"];
+    [hostReachable startNotifier];
+    
+    // now patiently wait for the notification
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self.tableView reloadData];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self.tableView reloadData];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
+- (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     // Return YES for supported orientations
     //return (interfaceOrientation == UIInterfaceOrientationPortrait);
     return YES;
@@ -121,31 +125,30 @@ dispatch_queue_t pdfDownloadQueue;
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     // Return the number of sections.
-//    NSLog(@"list of tracts count: %i", [listOfTracts count]);
-    return [listOfTracts count];;
+    //    NSLog(@"list of tracts count: %i", [listOfTracts count]);
+    
+    //    return [listOfTracts count];
+    return 1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	
-	if(section == 0)
-		return @"Tracts";
-	else
-		return @"Devotionals";
+    //	if(section == 0)
+    return @"Tracts";
+    //	else
+    //		return @"Devotionals";
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     //Number of rows it should expect should be based on the section
 	NSDictionary *dictionary = [listOfTracts objectAtIndex:section];
     NSArray *array = [dictionary objectForKey:@"Content"];
 	return [array count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"TractCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -179,78 +182,14 @@ dispatch_queue_t pdfDownloadQueue;
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         //NSLog(@"The file exists");
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        for(UIView *subview in [cell subviews]) {
-            if([subview isKindOfClass:[UIButton class]]) {
-                [subview removeFromSuperview];
-            } else {
-                // Do nothing - not a UIButton or subclass instance
-            }
-        }
     } else {
         //NSLog(@"The file does not exist");
         [cell setAccessoryType:UITableViewCellAccessoryNone];
-        UIButton *downloadButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        downloadButton.frame = CGRectMake(215, 12, 75, 20);
-        downloadButton.titleLabel.font = [UIFont fontWithName: @"Arial" size: 10.0];
-        downloadButton.tag = indexPath.row;
-        [downloadButton addTarget:self action:@selector(downloadPDF:) forControlEvents:UIControlEventTouchUpInside];
-        [downloadButton setTitle:@"Download" forState:UIControlStateNormal];
-        [cell addSubview:downloadButton];
     }
     
     return cell;
 }
 
--(void)downloadPDF:(UIControl *)sender {
-    pdfDownloadQueue = dispatch_queue_create("com.test.downloadPDF", NULL);
-    
-    // Cell activity indicator
-    NSArray *visible = [self.tableView indexPathsForVisibleRows];
-    NSIndexPath *path = (NSIndexPath*)[visible objectAtIndex:sender.tag];
-    
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:path];
-    
-    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    cell.accessoryView = nil;
-    cell.accessoryView = activityView;
-    [activityView startAnimating];
-    
-    for(UIView *subview in [cell subviews]) {
-        if([subview isKindOfClass:[UIButton class]]) {
-            [subview removeFromSuperview];
-            NSLog(@"Remove button - line 221");
-        } else {
-            // Do nothing - not a UIButton or subclass instance
-        }
-    }
-    
-    dispatch_async(pdfDownloadQueue, ^{
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-        
-        NSLog(@"Downloading => %@", [allDocs objectAtIndex:sender.tag]);
-        NSString *fileName = [NSString stringWithFormat:@"%@", [allDocs objectAtIndex:sender.tag]];
-        fileName = [fileName stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-        fileName = [fileName stringByReplacingOccurrencesOfString:@"?" withString:@""];
-        
-        NSData *pdfData = [[NSData alloc] initWithContentsOfURL:
-                           [NSURL URLWithString:[NSString stringWithFormat:@"http://mobitract.utvca.com/tracts/%@.pdf", fileName]]];
-            
-        //Store the Data locally as PDF File
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        
-        NSString *filePath = [NSString stringWithFormat:@"%@/%@%@", documentsDirectory,fileName,@".pdf"];
-            
-        [pdfData writeToFile:filePath atomically:YES];
-        [self.tableView reloadData];
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    });
-    
-//    [activityView stopAnimating];
-//    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-}
-
-#pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"didSelectRowAtIndexPath");
     
@@ -273,8 +212,57 @@ dispatch_queue_t pdfDownloadQueue;
         [self performSegueWithIdentifier:@"ShowTract" sender:self];
     } else {
         NSLog(@"The file does not exist - didSelectRowAtIndexPath");
+        switch (netStatus)
+        {
+            case ReachableViaWiFi:
+            {
+                NSLog(@"WIFI");
+                [self downloadPdfAtIndexPath:indexPath];
+                break;
+            }
+            case ReachableViaWWAN:
+            {
+                NSLog(@"WWAN");
+                [self downloadPdfAtIndexPath:indexPath];
+                //                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cellular Network" message:@"For better performance connect to WiFi." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                //                [alert show];
+                break;
+            }
+            default:
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Error" message:@"There was an error with the network connection." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];
+            }
+        }
         [tableView reloadData];
     }
+}
+
+- (void)downloadPdfAtIndexPath:(NSIndexPath *)indexPath {
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        [self beingBackgroundUpdateTask:indexPath];
+        
+        NSLog(@"Downloading => %@", [allDocs objectAtIndex:indexPath.row]);
+        NSString *fileName = [NSString stringWithFormat:@"%@", [allDocs objectAtIndex:indexPath.row]];
+        fileName = [fileName stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+        fileName = [fileName stringByReplacingOccurrencesOfString:@"?" withString:@""];
+        
+        NSData *pdfData = [[NSData alloc] initWithContentsOfURL:
+                           [NSURL URLWithString:[NSString stringWithFormat:@"http://mobitract.utvca.com/tracts/%@.pdf", fileName]]];
+        
+        //Store the Data locally as PDF File
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@%@", documentsDirectory,fileName,@".pdf"];
+        
+        [pdfData writeToFile:filePath atomically:YES];
+        [self endBackgroundUpdateTask:indexPath];
+    });
+    
+    //    [activityView stopAnimating];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -293,22 +281,45 @@ dispatch_queue_t pdfDownloadQueue;
     }
 }
 
+- (void)beingBackgroundUpdateTask:(NSIndexPath *)indexPath {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    // Cell activity indicator
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    cell.accessoryView = nil;
+    cell.accessoryView = activityView;
+    [activityView startAnimating];
+    
+    self.backgroundUpdateTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        [self endBackgroundUpdateTask:indexPath];
+    }];
+}
+
+- (void)endBackgroundUpdateTask:(NSIndexPath *)indexPath {
+    [[UIApplication sharedApplication] endBackgroundTask: self.backgroundUpdateTask];
+    self.backgroundUpdateTask = UIBackgroundTaskInvalid;
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
+    // Cell activity indicator
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryView = nil;
+    
+    [self.tableView reloadData];
+}
 
 // Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
 
-
-
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        //        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         NSLog(@"Delete the downloaded file");
         NSIndexPath *path = indexPath;
         
@@ -333,7 +344,7 @@ dispatch_queue_t pdfDownloadQueue;
             [self.tableView reloadData];
         } else {
             NSLog(@"The file does not exist: %@", filePath);
-            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"File no found." message:@"Unable to delte." delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"File no found." message:@"Unable to delete." delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
             [av show];
             return;
         }
@@ -345,19 +356,73 @@ dispatch_queue_t pdfDownloadQueue;
 
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
+
+- (void)checkNetworkStatus:(NSNotification *)notice {
+    // called after network status changes
+    NetworkStatus internetStatus = [internetReachable currentReachabilityStatus];
+    switch (internetStatus)
+    {
+        case NotReachable:
+        {
+            NSLog(@"The internet is down.");
+            internetActive = NO;
+            netStatus = NotReachable;
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            NSLog(@"The internet is working via WIFI.");
+            internetActive = YES;
+            netStatus = ReachableViaWiFi;
+            break;
+        }
+        case ReachableViaWWAN:
+        {
+            NSLog(@"The internet is working via WWAN.");
+            internetActive = YES;
+            netStatus = ReachableViaWWAN;
+            
+            break;
+        }
+    }
+    
+    NetworkStatus hostStatus = [hostReachable currentReachabilityStatus];
+    switch (hostStatus)
+    {
+        case NotReachable:
+        {
+            NSLog(@"A gateway to the host server is down.");
+            hostActive = NO;
+            
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            NSLog(@"A gateway to the host server is working via WIFI.");
+            hostActive = YES;
+            
+            break;
+        }
+        case ReachableViaWWAN:
+        {
+            NSLog(@"A gateway to the host server is working via WWAN.");
+            hostActive = YES;
+            
+            break;
+        }
+    }
 }
-*/
 
 @end
